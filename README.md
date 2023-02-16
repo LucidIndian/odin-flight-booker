@@ -4,7 +4,7 @@ This is the "Project: Flight Booker" from the Ruby on Rails Course by The Odin P
 
 Purpose: practice advanced forms with Rails. 
 
-What is this?: a one-way flight booker app! Users may select travel dates, airports, and determine the guests. No styling or other features have been added.
+What is this?: a one-way flight booker app with fake data! Users may select travel dates, airports, and determine the guests. No styling or other features have been added.
 
 Ruby version: > v3.0
 
