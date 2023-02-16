@@ -4,7 +4,7 @@
 # Examples:
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-
+MAX_FLIGHTS_PER_ROUTE = 3
 
 FLIGHTS_DURATIONS = {
   'ATL': { 'DFW': 135, 'DEN': 190, 'ORD': 93, 'LAX': 150, 'CLT': 75, 'MCO': 90, 'LAS': 250, 'PHX': 235, 'MIA': 115 },
@@ -19,18 +19,46 @@ FLIGHTS_DURATIONS = {
   'MIA': { 'ATL': 120, 'DFW': 185, 'DEN': 265, 'ORD': 205, 'LAX': 320, 'CLT': 130, 'MCO': 75, 'LAS': 315, 'PHX': 285 }
 }.freeze
 
+# AIRPORTS
 def seed_airports
   FLIGHTS_DURATIONS.each_key { |airport_code| Airport.create(code: airport_code) }
   p "Created #{Airport.count} airports"
 end
 
+# FLIGHTS
+def seed_flights
+  current_date = Date.today
+  (current_date..current_date + 10).each do |day|
+    FLIGHTS_DURATIONS.each_key do |departure_airport|
+      FLIGHTS_DURATIONS[departure_airport].each_key do |arrival_airport|
+        seed_random_number_of_flights_on_day(day, departure_airport, arrival_airport)
+      end
+    end
+  end
+end
 
+def seed_random_number_of_flights_on_day(day, departure_airport, arrival_airport)
+  rand(0..MAX_FLIGHTS_PER_ROUTE).times do
+    seed_flight(day, departure_airport, arrival_airport)
+  end
+end
 
+def seed_flight(day, departure_airport, arrival_airport)
+  Flight.create(
+    start: add_random_time_to_day(day),
+    flight_duration: FLIGHTS_DURATIONS[departure_airport][arrival_airport],
+    departure_id: Airport.find_by(code: departure_airport).id,
+    arrival_id: Airport.find_by(code: arrival_airport).id
+  )
+end
+
+def add_random_time_to_day(day)
+  day.to_datetime + rand(0..23).hours + rand(0..59).minutes
+end
 
 Airport.destroy_all
-# Flight.destroy_all
+Flight.destroy_all
 seed_airports
-# seed_flights
+seed_flights
+p "Created #{Flight.count} flights"
 
-
-# p "Created #{Flight.count} flights"
