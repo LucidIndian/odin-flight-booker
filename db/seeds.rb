@@ -2,7 +2,6 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
-#
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
@@ -17,3 +16,11 @@ Airport.create!([
 ])
 
 p "Created #{Airport.count} airports"
+
+Flight.destroy_all
+
+Flight.create!([
+{flight_duration: "180", start: arrival_id: departure_id:  },
+])
+
+p "Created #{Flight.count} flights"
