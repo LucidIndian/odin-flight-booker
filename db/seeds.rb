@@ -5,22 +5,32 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+
+FLIGHTS_DURATIONS = {
+  'ATL': { 'DFW': 135, 'DEN': 190, 'ORD': 93, 'LAX': 150, 'CLT': 75, 'MCO': 90, 'LAS': 250, 'PHX': 235, 'MIA': 115 },
+  'DFW': { 'ATL': 175, 'DEN': 125, 'ORD': 145, 'LAX': 190, 'CLT': 155, 'MCO': 160, 'LAS': 170, 'PHX': 145, 'MIA': 175 },
+  'DEN': { 'ATL': 130, 'DFW': 115, 'ORD': 150, 'LAX': 150, 'CLT': 200, 'MCO': 220, 'LAS': 115, 'PHX': 115, 'MIA': 235 },
+  'ORD': { 'ATL': 120, 'DFW': 140, 'DEN': 155, 'LAX': 260, 'CLT': 120, 'MCO': 165, 'LAS': 230, 'PHX': 220, 'MIA': 185 },
+  'LAX': { 'ATL': 265, 'DFW': 190, 'DEN': 145, 'ORD': 250, 'CLT': 295, 'MCO': 300, 'LAS': 75, 'PHX': 90, 'MIA': 320 },
+  'CLT': { 'ATL': 75, 'DFW': 160, 'DEN': 215, 'ORD': 125, 'LAX': 295, 'MCO': 100, 'LAS': 275, 'PHX': 255, 'MIA': 120 },
+  'MCO': { 'ATL': 95, 'DFW': 165, 'DEN': 235, 'ORD': 180, 'LAX': 295, 'CLT': 310, 'LAS': 295, 'PHX': 265, 'MIA': 70 },
+  'LAS': { 'ATL': 240, 'DFW': 165, 'DEN': 115, 'ORD': 220, 'LAX': 75, 'CLT': 260, 'MCO': 285, 'PHX': 70, 'MIA': 295 },
+  'PHX': { 'ATL': 225, 'DFW': 145, 'DEN': 110, 'ORD': 210, 'LAX': 85, 'CLT': 250, 'MCO': 260, 'LAS': 70, 'MIA': 275 },
+  'MIA': { 'ATL': 120, 'DFW': 185, 'DEN': 265, 'ORD': 205, 'LAX': 320, 'CLT': 130, 'MCO': 75, 'LAS': 315, 'PHX': 285 }
+}.freeze
+
+def seed_airports
+  FLIGHTS_DURATIONS.each_key { |airport_code| Airport.create(code: airport_code) }
+  p "Created #{Airport.count} airports"
+end
+
+
+
+
 Airport.destroy_all
+# Flight.destroy_all
+seed_airports
+# seed_flights
 
-Airport.create!([
-{code: "ATL"},{code: "DEN"},
-{code: "DFW"},{code: "JFK"},
-{code: "MKE"},{code: "ORD"},
-{code: "PHL"},{code: "SEA"},
-{code: "SFO"},{code: "SLC"},
-])
 
-p "Created #{Airport.count} airports"
-
-Flight.destroy_all
-
-Flight.create!([
-{flight_duration: "180", start: arrival_id: departure_id:  },
-])
-
-p "Created #{Flight.count} flights"
+# p "Created #{Flight.count} flights"
