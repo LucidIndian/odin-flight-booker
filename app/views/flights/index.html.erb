@@ -1,4 +1,4 @@
-<h1>Flights!</h1>
+<h1>Odin Flights!</h1>
 
 <div class="search">
   <%= image_tag "magnify.svg", height: 20 %>
@@ -11,5 +11,32 @@
 </div>
 
 <div class="dropdowns">
-Menus will go here
+
+  <h4>Departing flight</h4>
+  <select name="departure_id">
+    <%= @airports.each do |airport| %>
+      <option value="<%= airport.id %>"><%= airport.code %></option>
+    <% end %>
+  </select>
+
+  <h4>Arrival flight</h4>
+  <select name="departure_id">
+    <%= @airports.each do |airport| %>
+      <option value="<%= airport.id %>"><%= airport.code %></option>
+    <% end %>
+  </select>
+
+  <h4>Number of passengers (1-4)</h4>
+  <select name="passengers_id">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+  </select>
+
+ <h4>Date</h4>
+  <select name="date_id">
+      <option value="date">date</option>
+  </select>
+
 </div>
