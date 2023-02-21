@@ -16,5 +16,16 @@
 
  body {
    min-height: 100vh; 
-   background-color: aqua;
+    /* background-color: aqua; */
+   background-image: url("plane_1920.jpg");
+   background-size: cover;
+ }
+
+ h1,h2,h3,h4,p,label {
+  color: aqua;
+ }
+
+ .dropdowns {
+  padding: 1.2rem;
+  background-color: #00000090;
  }
