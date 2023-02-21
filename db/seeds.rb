@@ -4,7 +4,7 @@
 # Examples:
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-MAX_FLIGHTS_PER_ROUTE = 3
+MAX_FLIGHTS_PER_ROUTE = 2
 
 FLIGHTS_DURATIONS = {
   'ATL': { 'DFW': 135, 'DEN': 190, 'ORD': 93, 'LAX': 150, 'CLT': 75, 'MCO': 90, 'LAS': 250, 'PHX': 235, 'MIA': 115 },
@@ -28,7 +28,7 @@ end
 # FLIGHTS
 def seed_flights
   current_date = Date.today
-  (current_date..current_date + 10).each do |day|
+  (current_date..current_date + 7).each do |day|
     FLIGHTS_DURATIONS.each_key do |departure_airport|
       FLIGHTS_DURATIONS[departure_airport].each_key do |arrival_airport|
         seed_random_number_of_flights_on_day(day, departure_airport, arrival_airport)
@@ -61,4 +61,3 @@ Flight.destroy_all
 seed_airports
 seed_flights
 p "Created #{Flight.count} flights"
-
