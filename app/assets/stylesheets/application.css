@@ -32,3 +32,7 @@
   padding: 1rem 1rem 1rem 1rem;
  }
  
+input {
+  margin: 2rem 1rem;
+  padding: 0.5rem 1.5rem;
+}
