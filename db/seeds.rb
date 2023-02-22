@@ -28,7 +28,7 @@ end
 # FLIGHTS
 def seed_flights
   current_date = Date.today
-  (current_date..current_date + 7).each do |day|
+  (current_date..current_date + 5).each do |day|
     FLIGHTS_DURATIONS.each_key do |departure_airport|
       FLIGHTS_DURATIONS[departure_airport].each_key do |arrival_airport|
         seed_random_number_of_flights_on_day(day, departure_airport, arrival_airport)

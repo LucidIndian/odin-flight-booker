@@ -23,11 +23,12 @@
 
  h1,h2,h3,h4,p,label {
   color: aqua;
+  padding: 0rem;
  }
 
  .dropdowns {
-  padding: 1.2rem;
   background-color: #00000090;
   width: 300px;
+  padding: 1rem 1rem 1rem 1rem;
  }
  

@@ -1,43 +1,58 @@
 <h1>Odin Flights!</h1>
 
-<div class="search">
-  <%= image_tag "magnify.svg", height: 20 %>
-  <%# <img src="../images/magnify.svg" alt="search icon" height = 25px width = auto /> %>
-  <%= form_with url: "/", method: :get do |form| %>
-  <%#= form.label :query, "Search for:" %>
-  <%= form.text_field :query %>
-  <%= form.submit "Search" %>
-  <% end %>
-</div>
+<%= form_with(url: '/', method: "get") do |form| %>
 
-<div class="dropdowns">
+  <div class="dropdowns">
 
-  <h4>Departing flight</h4>
-  <select name="departure_id">
-    <%= @airports.each do |airport| %>
-      <option value="<%= airport.id %>"><%= airport.code %></option>
-    <% end %>
-  </select>
+    <p>Departing flight</p>
+    <select name="departure_id">
+      <%= @airports.each do |airport| %>
+        <option value="<%= airport.id %>"><%= airport.code %></option>
+      <% end %>
+    </select>
 
-  <h4>Arrival flight</h4>
-  <select name="departure_id">
-    <%= @airports.each do |airport| %>
-      <option value="<%= airport.id %>"><%= airport.code %></option>
-    <% end %>
-  </select>
+    <p>Arrival flight</p>
+    <select name="arrival_id">
+      <%= @airports.each do |airport| %>
+        <option value="<%= airport.id %>"><%= airport.code %></option>
+      <% end %>
+    </select>
 
-  <h4>Number of passengers (1-4)</h4>
-  <select name="passengers_id">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-  </select>
+    <p>Number of passengers (1-4)</p>
+    <select name="passengers_id">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
 
-  <%# Fix ASAP %>
-  <h4>Date</h4>
-  <select name="date_id">
-      <option value="date">date</option>
-  </select>
+    <%# Fix ASAP - https://apidock.com/ruby/DateTime/strftime %>
+    <%# date_select(object_name, method, options = {}, html_options = {}) %>
+    <p>Date</p>
+    <%# <select name="date_id">
+        <option value="date">date</option>
+    </select> %>
 
-</div>
+    <%# date_select(object_name, method, options = {}, html_options = {}) %>
+    <%# date_select("flight", "start") %>
+    <%#= select(:start, @start_options, selected: params[:start]) %>
+    <%#= select_day(Time.now, end_day: Time.now + 5, prompt: 'Choose day')%>
+
+
+    <%# <%= select_tag "event_date", options_from_collection_for_select(UgradRsvp.get_event_dates, 'event_date', :event_date_formatted) %>
+
+    <%#= select_tag "start", options_from_collection_for_select(Flight.possibles, 'start', :start) %>
+    <%= select_tag "start", options_from_collection_for_select(Flight.all, 'start', :start) %>
+
+
+    <%# Later: 
+    <%# "When working with model objects, just as select combines select_tag and options_for_select, collection_select combines select_tag with options_from_collection_for_select. %>
+    <%#= collection_select(:flight, Flight.all, :id, :start) %> 
+    <p></p>
+    <div>
+      <%= form.submit 'Search'%>
+    </div>
+
+  </div>
+ 
+<% end %>
