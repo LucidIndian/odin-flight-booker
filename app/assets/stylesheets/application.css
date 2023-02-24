@@ -21,7 +21,7 @@
    background-size: cover;
  }
 
- h1,h2,h3,h4,p,label {
+ h1,h2,h3,h4,h5,p,label,div {
   color: aqua;
   padding: 0rem;
  }

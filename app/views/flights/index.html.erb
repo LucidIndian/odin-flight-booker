@@ -21,7 +21,6 @@
         <option value="4">4</option>
     </select>
 
-
     <%# https://apidock.com/ruby/DateTime/strftime %>
     <p>Day of this month</p>
 
@@ -33,8 +32,10 @@
     <%# TEST (Works) %>
     <%#= select_day(Date.today) %>
 
+    <%# Generates a date select that is stored in the :start variable, in the written_on attribute,
+    # with the year in the year drop down box starting at 1995, numbers used for months instead of words,
+    # and without a day select box. %>
     <%= form.select :start, Date.today..Date.today + 5 %>
-
     <%#= form.select :start, @day_options %>
     <%#= form.collection_select :start, Flight.order(:start), :start, :name %>
 
@@ -49,4 +50,4 @@
 <%# search results will need to be in their own form with radio buttons %>
 <h2>Search Results</h2>
 
- <%= render "selection_form" %>
+<%= render "selection_form" %>
