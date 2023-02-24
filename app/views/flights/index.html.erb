@@ -1,34 +1,42 @@
 <h1>Odin Flights!</h1>
 
-<%= form_with(url: '/', method: "get") do |form| %>
+<%= form_with(url: '/flights', method: "get") do |form| %>
 
   <div class="dropdowns">
 
     <p>Departing flight</p>
-    <select name="departure_id">
-      <%= @airports.each do |airport| %>
-        <option value="<%= airport.id %>"><%= airport.code %></option>
-      <% end %>
-    </select>
+
+    <%= form.collection_select :departure_id, @airports, :id, :code %>
 
     <p>Arrival flight</p>
-    <select name="arrival_id">
-      <%= @airports.each do |airport| %>
-        <option value="<%= airport.id %>"><%= airport.code %></option>
-      <% end %>
-    </select>
+    
+    <%= form.collection_select :arrival_id, @airports, :id, :code %>
 
     <p>Number of passengers (1-4)</p>
-    <select name="passengers_id">
+    
+    <select name="passengers_num">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
     </select>
 
+
     <%# https://apidock.com/ruby/DateTime/strftime %>
     <p>Day of this month</p>
-    <%= form.select(:start, @day_options) %>
+
+    <%#= form.collection_select :start, @flights, :start, formatted_start %>
+
+    <%# TEST: select_day(date, options = {}, html_options = {}) %>
+    <%#= select_day(Time.now) %>
+
+    <%# TEST (Works) %>
+    <%#= select_day(Date.today) %>
+
+    <%= form.select :start, Date.today..Date.today + 5 %>
+
+    <%#= form.select :start, @day_options %>
+    <%#= form.collection_select :start, Flight.order(:start), :start, :name %>
 
     <div>
       <%= form.submit 'Search'%>
@@ -40,3 +48,5 @@
 
 <%# search results will need to be in their own form with radio buttons %>
 <h2>Search Results</h2>
+
+ <%= render "selection_form" %>
