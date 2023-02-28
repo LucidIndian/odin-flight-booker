@@ -4,21 +4,17 @@ class FlightsController < ApplicationController
     @airports = Airport.all
     @flights = Flight.all
     # @num_of_passengers = query_params[:passengers_num]
-    # @unique_flight_days = @flights.map{ |flight| [ flight.start.day ] }.uniq
-    # @day_options = @flights.map{ |flight| [ flight.start.day, flight.start] }.uniq
     # @searched_flights_testa = Flight.user_search(query_params)
-    @searched_flights_testb = Flight.where(departure_id: params[:departure_id],
-      arrival_id: params[:arrival_id])
-
-    # @start_flight_days = Time.now
-    # @end_flight_days = Time.now + 5.days
+    @searched_flights = Flight.where(departure_id: params[:departure_id],
+    arrival_id: params[:arrival_id], start_date: params[:start_date])
   end
 
   private
 
     # Only allow a list of trusted parameters through.
+    # I don't think this is being used, why not? Do I need to call `query_params` above?
     def query_params
-      params.permit(:departure_id, :arrival_id, :start, :passengers_num, :commit)
+      params.permit(:departure_id, :arrival_id, :start_date, :start_time, :passengers_num, :commit)
       puts "query_params method ran"
     end
 

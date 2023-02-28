@@ -5,15 +5,12 @@
   <div class="dropdowns">
 
     <p>Departing flight</p>
-
     <%= form.collection_select :departure_id, @airports, :id, :code %>
 
     <p>Arrival flight</p>
-    
     <%= form.collection_select :arrival_id, @airports, :id, :code %>
 
     <p>Number of passengers (1-4)</p>
-    
     <select name="passengers_num">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -21,23 +18,10 @@
         <option value="4">4</option>
     </select>
 
-    <%# https://apidock.com/ruby/DateTime/strftime %>
     <p>Day of this month</p>
+    <%# https://apidock.com/ruby/DateTime/strftime %>
 
-    <%#= form.collection_select :start, @flights, :start, formatted_start %>
-
-    <%# TEST: select_day(date, options = {}, html_options = {}) %>
-    <%#= select_day(Time.now) %>
-
-    <%# TEST (Works) %>
-    <%#= select_day(Date.today) %>
-
-    <%# Generates a date select that is stored in the :start variable, in the written_on attribute,
-    # with the year in the year drop down box starting at 1995, numbers used for months instead of words,
-    # and without a day select box. %>
-    <%= form.select :start, Date.today..Date.today + 5 %>
-    <%#= form.select :start, @day_options %>
-    <%#= form.collection_select :start, Flight.order(:start), :start, :name %>
+    <%= form.select :start_date, Date.today..Date.today + 5 %>
 
     <div>
       <%= form.submit 'Search'%>

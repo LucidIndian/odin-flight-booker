@@ -1,18 +1,19 @@
 
-  <% if @searched_flights_testb.present? %>
+  <% if @searched_flights.present? %>
     <%# Testing to see if I can get the search to work: %>
     <p><%#= @searched_flights_testb.inspect %></p>
 
     <%= form_with(model: @flight, url: new_booking_path, method: "get") do |form| %>
       <%= form.hidden_field :num_of_passengers, value: @num_of_passengers %>
         <h5>
-          <%= "#{pluralize(@searched_flights_testb.count, "flight")} available!" %>
+          <%= "#{pluralize(@searched_flights.count, "flight")} available!" %>
         </h5>
 
-        <% @searched_flights_testb.each do |flight| %>
+        <% @searched_flights.each do |flight| %>
           <div>
               <%= form.radio_button :flight_id, flight.id%>
-                <%= "#{flight.start}" %>
+                <%= "Flight ##{flight.id} - #{flight.departure_airport.code} to #{flight.arrival_airport.code} -
+                  #{flight.start_date} at #{flight.start_time.strftime("%I:%M%p")}" %>
           </div>
         <% end %>
         <%= form.submit "Book" %>
