@@ -3,7 +3,7 @@
 <%= form_with model: @booking do |f| %>
   <div class="booking-form">
     <p>
-      <%="Flight date: #{@selected_flight.start_date}" %>
+      <%="Flight # #{@selected_flight.id} on #{@selected_flight.start_date} at #{@selected_flight.start_time.strftime("%I:%M%p")}" %>
     </p> 
     <p>
       <%= "Leaving from: #{@selected_flight.departure_airport.code}" %>
@@ -11,29 +11,38 @@
     <p>
       <%= "Flying to: #{@selected_flight.arrival_airport.code}" %>
     </p>
-
-  <%# set of fields to enter personal information for each passenger %>
-    <% i = 1 %>
-    <%= f.fields_for :passengers do |passengers_data| %>
-          <label class="label">
-            <%= "Passenger #{i}" %><br/>
-          </label>
+       <p>
+      <%= "Passenger count: #{@passengers_count}" %>
+    </p>
+    <hr>
+    <div class="passengers">
+      <%# set of fields to enter personal information for each passenger %>
+      <% i = 1 %>
+      <%= f.fields_for :passengers do |passengers_data| %>
+            
           <div>
-            <p>
-              <%= passengers_data.text_field :name, placeholder: "Passenger's name", required: true%>
-            </p>
-          </div>
-          <div class="field">
-            <p>
-              <%= passengers_data.email_field :email, placeholder: "name@example.com", required: true%>
-            </p>
-          </div>
-      <% i += 1%>
-    <% end %>
-    
+            <label class="label">
+              <%= "Passenger #{i}" %><br/>
+            </label>
+            <div>
+              <p>
+                <%= passengers_data.text_field :name, placeholder: "Passenger's name", required: true%>
+              </p>
+            </div>
+            <div class="field">
+              <p>
+                <%= passengers_data.email_field :email, placeholder: "name@example.com", required: true%>
+              </p>
+            </div>
+          </div>  
+
+        <% i += 1%>
+      <% end %>
+    </div>
+
     <%= f.hidden_field :flight_id, value: params[:flight_id] %>
 
-        <%= f.submit 'Purchase Ticket' %>
+    <%= f.submit 'Purchase Ticket' %>
 
   </div>
 <% end %>

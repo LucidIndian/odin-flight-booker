@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @selected_flight = Flight.find(params[:flight_id])
     @passengers_count = params[:num_of_passengers].to_i
-    puts "Passenger count is #{@passengers_count}"
+    # puts "Passenger count is #{@passengers_count}"
     @passengers_count.times { @booking.passengers.build }
   end
 
