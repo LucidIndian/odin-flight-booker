@@ -16,7 +16,6 @@
 
 body {
   min-height: 100vh; 
-  /* background-color: aqua; */
   background-image: url("plane_1920.jpg");
   background-size: cover;
 }
@@ -26,9 +25,9 @@ h1,h2,h3,h4,h5,p,label,div {
  padding: 0rem;
 }
 
-.dropdowns, .search-results {
+.dropdowns, .search-results, .booking-form {
  background-color: #00000090;
- width: 300px;
+ width: 333px;
  padding: 1rem 1rem 1rem 1rem;
 }
  
