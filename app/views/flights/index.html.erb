@@ -4,11 +4,15 @@
 
   <div class="dropdowns">
 
-    <p>Departing flight</p>
-    <%= form.collection_select :departure_id, @airports, :id, :code %>
+    <div class="flights">  
+      <p>Departing flight</p>
+      <%= form.collection_select :departure_id, @airports, :id, :code %>
+    </div>  
 
-    <p>Arrival flight</p>
-    <%= form.collection_select :arrival_id, @airports, :id, :code %>
+    <div class="flights">
+      <p>Arrival flight</p>
+      <%= form.collection_select :arrival_id, @airports, :id, :code %>
+    </div>
 
     <p>Number of passengers (1-4)</p>
     <select name="passengers_num">
@@ -33,5 +37,6 @@
 
 <%# search results will need to be in their own form with radio buttons %>
 <h2>Search Results</h2>
-
-<%= render "selection_form" %>
+<div class="search-results">
+  <%= render "selection_form" %>
+</div>

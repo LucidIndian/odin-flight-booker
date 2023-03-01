@@ -6,13 +6,13 @@
     <%= form_with(model: @flight, url: new_booking_path, method: "get") do |form| %>
       <%= form.hidden_field :num_of_passengers, value: @num_of_passengers %>
         <h5>
-          <%= "#{pluralize(@searched_flights.count, "flight")} available!" %>
+          <%= "#{pluralize(@searched_flights.count, "flight")} from #{@searched_flights.first.departure_airport.code} to #{@searched_flights.first.arrival_airport.code} available!" %>
         </h5>
 
         <% @searched_flights.each do |flight| %>
           <div>
               <%= form.radio_button :flight_id, flight.id%>
-                <%= "Flight ##{flight.id} - #{flight.departure_airport.code} to #{flight.arrival_airport.code} -
+                <%= "Flight ##{flight.id} -
                   #{flight.start_date} at #{flight.start_time.strftime("%I:%M%p")}" %>
           </div>
         <% end %>
