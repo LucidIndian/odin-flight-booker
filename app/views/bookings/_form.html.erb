@@ -11,8 +11,11 @@
     </div>
   <% end %>
 
-
-
+  <div>
+    <%= form.label :flight_id, style: "display: block" %>
+    <%= form.text_field :flight_id %>
+    <%# <%= form.collection_select :flight_id, @flights, :id, :id %> %>
+  </div>
 
   <div>
     <%= form.submit %>
