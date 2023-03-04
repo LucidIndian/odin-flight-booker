@@ -27,7 +27,7 @@ h1,h2,h3,h4,h5,p,label,div {
 
 .dropdowns, .search-results {
  background-color: #00000090;
- width: 333px;
+ width: 300px;
  padding: 1rem 1rem 1rem 1rem;
 }
 
@@ -39,7 +39,7 @@ h1,h2,h3,h4,h5,p,label,div {
  
 .flights {
  display: grid;
- grid-template: 1fr / 1fr 1fr;
+ grid-template: 1fr / 0.6fr 0.4fr;
 }
 
 input {
@@ -54,5 +54,4 @@ input {
 
 label {
   margin: 0.5rem;
-  
 }
