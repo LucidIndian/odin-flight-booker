@@ -3,7 +3,7 @@
 <%= form_with model: @booking do |f| %>
   <div class="booking-form">
     <p>
-      <%="Flight # #{@selected_flight.id} on #{@selected_flight.start_date} at #{@selected_flight.start_time.strftime("%I:%M%p")}" %>
+      <%= "Flight # #{@selected_flight.id} on #{@selected_flight.start_date} at #{@selected_flight.start_time.strftime("%I:%M%p")}" %>
     </p> 
     <p>
       <%= "Leaving from: #{@selected_flight.departure_airport.code}" %>

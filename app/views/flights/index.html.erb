@@ -5,27 +5,24 @@
   <div class="dropdowns">
 
     <div class="flights">  
-      <p>Departing flight</p>
+      <%= form.label :departure_id, "Departing flight:" %>
       <%= form.collection_select :departure_id, @airports, :id, :code %>
     </div>  
 
     <div class="flights">
-      <p>Arrival flight</p>
+      <%= form.label :arrival_id, "Arrival flight:" %>
       <%= form.collection_select :arrival_id, @airports, :id, :code %>
     </div>
 
-    <p>Number of passengers (1-4)</p>
-    <select name="passengers_num">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-    </select>
+    <div>
+      <%= form.label :passengers_num, "Number of passengers (1-4):" %>
+      <%= form.select :passengers_num, ["1", "2", "3", "4"] %>
+    </div>
 
-    <p>Day of this month</p>
-    <%# https://apidock.com/ruby/DateTime/strftime %>
-
-    <%= form.select :start_date, Date.today..Date.today + 5 %>
+    <div>
+      <%= form.label :start_date, "Upcoming days:" %>
+      <%= form.select :start_date, Date.today..Date.today + 5 %>
+    </div>
 
     <div>
       <%= form.submit 'Search'%>

@@ -51,3 +51,8 @@ input {
   display: grid;
   grid-template: 1fr / 1fr 1fr 1fr 1fr;
 }
+
+label {
+  margin: 0.5rem;
+  
+}
