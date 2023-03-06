@@ -1,7 +1,14 @@
-<div id="<%= dom_id booking %>">
+<div id="<%= dom_id booking %>" class="booking-form">
   <p>
-    <strong>Flight ID:</strong>
-    <%= booking.flight_id %>
+    Flight ID: <%= booking.flight_id %>
   </p>
+
+  <% booking.passengers.each_with_index do |passenger, idx| %>
+    <p> Passenger #<%= idx +1 %></p>
+    <ul>
+      <li> Name: <%= passenger.name %></li>
+      <li> Email: <%= passenger.email %></li>
+    </ul>
+  <% end %>
 
 </div>

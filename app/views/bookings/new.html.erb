@@ -6,17 +6,14 @@
       <%= "Flight # #{@selected_flight.id} on #{@selected_flight.start_date} at #{@selected_flight.start_time.strftime("%I:%M%p")}" %>
     </p> 
     <p>
-      <%= "Leaving from: #{@selected_flight.departure_airport.code}" %>
+      <%= "Leaving from #{@selected_flight.departure_airport.code}, flying to #{@selected_flight.arrival_airport.code}" %>
     </p>
     <p>
-      <%= "Flying to: #{@selected_flight.arrival_airport.code}" %>
-    </p>
-       <p>
       <%= "Passenger count: #{@passengers_count}" %>
     </p>
     <hr>
     <div class="passengers">
-      <%# set of fields to enter personal information for each passenger %>
+      <%# fields to enter info for each passenger %>
       <% i = 1 %>
       <%= f.fields_for :passengers do |passengers_data| %>
             
@@ -26,12 +23,12 @@
             </label>
             <div>
               <p>
-                <%= passengers_data.text_field :name, placeholder: "Passenger's name", required: true%>
+                <%= passengers_data.text_field :name, placeholder: "Passenger's name", required: true %>
               </p>
             </div>
             <div class="field">
               <p>
-                <%= passengers_data.email_field :email, placeholder: "name@example.com", required: true%>
+                <%= passengers_data.email_field :email, placeholder: "name@example.com", required: true %>
               </p>
             </div>
           </div>  
@@ -46,8 +43,6 @@
 
   </div>
 <% end %>
-
-
 
 <%#= render "form", booking: @booking %>
 
