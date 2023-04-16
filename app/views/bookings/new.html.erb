@@ -6,7 +6,6 @@
         flying to #{@selected_flight.arrival_airport.code}
         on #{@selected_flight.start_date} at #{@selected_flight.start_time.strftime("%I:%M%p")}" %>
     </p> 
-    
     <p>
       <%= "Passenger count: #{@passengers_count}" %>
     </p>
@@ -14,15 +13,17 @@
 
 <%= form_with model: @booking do |f| %>
  
-  <div class="booking-form">
+  <div class="booking-form" data-controller="passenger">
     <h2>Passenger info</h2> 
-    <button>Add passenger!</button>
+
+    <button data-action="click->passenger#addpass">Add passenger!</button>
+
     <hr>
-    <div class="passengers" data-controller="passenger">
+    <div class="passengers" >
       <%# fields to enter info for each passenger %>
       <% i = 1 %>
       <%= f.fields_for :passengers do |passengers_data| %>
-          <div>
+          <div id="newpass">
             <label class="label">
               <%= "Passenger #{i}" %><br/>
             </label>
@@ -38,6 +39,25 @@
             </div>
           </div>  
         <% i += 1%>
+
+        <template id="template">
+          <div>
+            <label class="label">
+              <%= "Passenger #{i+1}" %><br/>
+            </label>
+            <div>
+              <p>
+                <%= passengers_data.text_field :name, placeholder: "Passenger's name", required: true %>
+              </p>
+            </div>
+            <div class="field">
+              <p>
+                <%= passengers_data.email_field :email, placeholder: "name@example.com", required: true %>
+              </p>
+            </div>
+          </div>  
+        </template>
+
       <% end %>
     </div>
 
@@ -47,11 +67,3 @@
 
   </div>
 <% end %>
-
-<%#= render "form", booking: @booking %>
-
-<%# <br> %>
-
-<%# <div>
-  <%= link_to "Back to bookings", bookings_path %>
-<%# </div> %>
