@@ -28,13 +28,14 @@ h1,h2,h3,h4,h5,p,label,div {
 .dropdowns, .search-results {
  background-color: #00000090;
  width: 300px;
- padding: 1rem 1rem 1rem 1rem;
+ padding: 1rem;
 }
 
 .booking-form {
   background-color: #00000090;
   width: auto;
-  padding: 1rem 1rem 1rem 1rem;
+  padding: 1rem;
+  margin: 0.5rem;
 }
  
 .flights {
@@ -49,9 +50,15 @@ input {
 
 .passengers {
   display: grid;
-  grid-template: 1fr / 1fr 1fr 1fr 1fr;
+  grid-template: 1fr / 1fr 1fr 1fr;
 }
 
 label {
+  margin: 0.5rem;
+}
+
+section {
+  background-color: #00000090;
+  padding: 1rem;
   margin: 0.5rem;
 }

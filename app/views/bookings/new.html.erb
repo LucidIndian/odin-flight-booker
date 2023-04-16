@@ -1,22 +1,27 @@
 <h1>New booking</h1>
-
-<%= form_with model: @booking do |f| %>
-  <div class="booking-form">
+  <section>
+  <h2>Itinerary</h2> 
     <p>
-      <%= "Flight # #{@selected_flight.id} on #{@selected_flight.start_date} at #{@selected_flight.start_time.strftime("%I:%M%p")}" %>
+      <%= "Flight ##{@selected_flight.id}, departing from #{@selected_flight.departure_airport.code} and 
+        flying to #{@selected_flight.arrival_airport.code}
+        on #{@selected_flight.start_date} at #{@selected_flight.start_time.strftime("%I:%M%p")}" %>
     </p> 
-    <p>
-      <%= "Leaving from #{@selected_flight.departure_airport.code}, flying to #{@selected_flight.arrival_airport.code}" %>
-    </p>
+    
     <p>
       <%= "Passenger count: #{@passengers_count}" %>
     </p>
+  </section>  
+
+<%= form_with model: @booking do |f| %>
+ 
+  <div class="booking-form">
+    <h2>Passenger info</h2> 
+    <button>Add passenger!</button>
     <hr>
-    <div class="passengers">
+    <div class="passengers" data-controller="passenger">
       <%# fields to enter info for each passenger %>
       <% i = 1 %>
       <%= f.fields_for :passengers do |passengers_data| %>
-            
           <div>
             <label class="label">
               <%= "Passenger #{i}" %><br/>
@@ -32,7 +37,6 @@
               </p>
             </div>
           </div>  
-
         <% i += 1%>
       <% end %>
     </div>
