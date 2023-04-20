@@ -18,7 +18,6 @@ class BookingsController < ApplicationController
     @passengers_count = params[:num_of_passengers].to_i
     # instantiating (not saving) already-associated-objects (X passengers to the booking)
     # @passengers_count.times { @booking.passengers.build }
-
   end
 
   # GET /bookings/1/edit

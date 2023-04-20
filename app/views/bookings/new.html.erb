@@ -14,11 +14,16 @@
 <%= form_with model: @booking do |f| %>
   <%= f.hidden_field :flight_id, value: params[:flight_id] %>
   
-  <div data-controller="passenger" data-passenger-target="passDiv" data-passenger-passnum-value="2" class="booking-form">
+  <%# Using a tag helper to use an instance variable (@passengers_count) to create an HTML attribute 
+  which helps our JS create the correct # of passenger fields inside this div %>
+  <%= tag.div data: { controller: "passenger", 
+    passenger_passnum_value: @passengers_count,
+    passenger_target: "passDiv",
+    }, class: "booking-form" do %>
+    
     <h2>Passenger info</h2> 
     <button data-action="click->passenger#addPass">Add passenger!</button>
     <hr>
-
     <%# fields to enter info for each passenger %> 
     <template data-passenger-target="passengerForm" >
       <%= f.fields_for :passengers, @booking.passengers.build, child_index: 'PASSENGER_RECORD' do |passengers_attributes| %>
@@ -27,17 +32,12 @@
               <%= passengers_attributes.text_field :name, placeholder: "Passenger's name", required: true %>
               <%= passengers_attributes.label :email %>
               <%= passengers_attributes.email_field :email, placeholder: "name@example.com", required: true %>
-        </div>  
+        </div> 
       <% end %>
     </template>
      
-     
-   
+  <% end %>
 
-
-    <%= f.submit 'Purchase Ticket' %>
-
-  </div>
+  <%= f.submit 'Purchase Ticket' %>
 
 <% end %>
-
