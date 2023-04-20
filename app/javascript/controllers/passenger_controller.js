@@ -1,32 +1,55 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+
+  static targets = [ 'passengerForm', 'passDiv' ];
+  static values = {
+    passnum: Number
+  }
+
   connect() {
     // this.element.textContent = "Hello Passenger Controller!"
     console.log("Hello Passenger Controller!");
+    console.log(`passnum value is ${this.passnumValue}`)
+    // Add the passenger form the # of times as the params
+    for (let i = 0; i < this.passnumValue; i++)  { 
+      this.addPass();
+    }
+ 
   }
 
-  addpass() {
-    // Test to see if the browser supports the HTML template element by checking
-    // for the presence of the template element's content attribute.
-    if ('content' in document.createElement('template')) {
-      // Instantiate the div with the existing div
-      // and the pass div with the template
-      console.log("Template detected!");
-      const passdiv = document.querySelector(".passengers");
-      const template = document.querySelector('#template');
-      // Clone the template div and insert it's child into the other div
-      // firstElementChild makes the clone a non-fragment
-      const clone = template.content.firstElementChild.cloneNode(true);
-      // div = clone.querySelectorAll("div");
+  addPass() {
+    console.log("Hello addPass Controller!");
+    
+      // random # to get unique index so as to make a uniquely indexed record
+      const randomIndex = new Date().getTime();
+      // create 4 random #s to get unique index so as to make a uniquely indexed record for each passenger.
+      // const dynamicIndex = this.passengerCountValue;
 
-      passdiv.appendChild(clone);
+      // const passengerForm = this.passengerFormTarget.innerHTML.replace(/PASSENGER_RECORD/g, dynamicIndex);
+      
+      const passengerForm = this.passengerFormTarget.innerHTML.replace(/PASSENGER_RECORD/g, randomIndex);
+      // const passengerForm = this.passengerFormTarget.innerHTML;
 
-    } else {
-      // Find another way to add the rows to the table because
-      // the HTML template element is not supported.
-    }
 
+
+      // Grab the target
+      // OLD: const passdiv = document.querySelector(".passengers");
+      const passDiv = this.passDivTarget;
+
+      passDiv.insertAdjacentHTML('beforeend', passengerForm);
+
+      // this.passengerCountValue++
+      // console.log(this.passengerCountValue)
+
+      // Old code:
+      // const template = document.querySelector('#template');
+      // // Clone the template div and insert it's child into the other div
+      // // firstElementChild makes the clone a non-fragment
+      // const clone = template.content.firstElementChild.cloneNode(true);
+      // // div = clone.querySelectorAll("div");
+
+      // passdiv.appendChild(clone);
 
   }
 

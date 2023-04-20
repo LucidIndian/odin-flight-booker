@@ -12,58 +12,32 @@
   </section>  
 
 <%= form_with model: @booking do |f| %>
- 
-  <div class="booking-form" data-controller="passenger">
+  <%= f.hidden_field :flight_id, value: params[:flight_id] %>
+  
+  <div data-controller="passenger" data-passenger-target="passDiv" data-passenger-passnum-value="2" class="booking-form">
     <h2>Passenger info</h2> 
-
-    <button data-action="click->passenger#addpass">Add passenger!</button>
-
+    <button data-action="click->passenger#addPass">Add passenger!</button>
     <hr>
-    <div class="passengers" >
-      <%# fields to enter info for each passenger %>
-      <% i = 1 %>
-      <%= f.fields_for :passengers do |passengers_data| %>
-          <div id="newpass">
-            <label class="label">
-              <%= "Passenger #{i}" %><br/>
-            </label>
-            <div>
-              <p>
-                <%= passengers_data.text_field :name, placeholder: "Passenger's name", required: true %>
-              </p>
-            </div>
-            <div class="field">
-              <p>
-                <%= passengers_data.email_field :email, placeholder: "name@example.com", required: true %>
-              </p>
-            </div>
-          </div>  
-        <% i += 1%>
 
-        <template id="template">
-          <div>
-            <label class="label">
-              <%= "Passenger #{i+1}" %><br/>
-            </label>
-            <div>
-              <p>
-                <%= passengers_data.text_field :name, placeholder: "Passenger's name", required: true %>
-              </p>
-            </div>
-            <div class="field">
-              <p>
-                <%= passengers_data.email_field :email, placeholder: "name@example.com", required: true %>
-              </p>
-            </div>
-          </div>  
-        </template>
-
+    <%# fields to enter info for each passenger %> 
+    <template data-passenger-target="passengerForm" >
+      <%= f.fields_for :passengers, @booking.passengers.build, child_index: 'PASSENGER_RECORD' do |passengers_attributes| %>
+        <div id="newpass">
+              <%= passengers_attributes.label :name %>
+              <%= passengers_attributes.text_field :name, placeholder: "Passenger's name", required: true %>
+              <%= passengers_attributes.label :email %>
+              <%= passengers_attributes.email_field :email, placeholder: "name@example.com", required: true %>
+        </div>  
       <% end %>
-    </div>
+    </template>
+     
+     
+   
 
-    <%= f.hidden_field :flight_id, value: params[:flight_id] %>
 
     <%= f.submit 'Purchase Ticket' %>
 
   </div>
+
 <% end %>
+
