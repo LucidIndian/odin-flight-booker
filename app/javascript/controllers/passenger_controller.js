@@ -13,7 +13,9 @@ export default class extends Controller {
     // Add the passenger fields the # of times as the params[:num_of_passengers] from the Booking page
     // Set as passnumValue as a different constant so I don't re-write it when I iterate it in the chained addPass() function
     const pnv = this.passnumValue;
-    for (let i = 0; i < pnv; i++)  { 
+    for (let i = 0; i < pnv; i++)  {  
+      // Hack: decrement before incrementing again to offset only when connecting 
+      this.passnumValue--
       this.addPass();
     }
   }
@@ -28,8 +30,19 @@ export default class extends Controller {
     const passDiv = this.passDivTarget;
     passDiv.insertAdjacentHTML('beforeend', passengerForm);
     // Iterated passnumValue to update total passengers in the HTML attribute on Booking#New
-    this.passnumValue++
-    // console.log(`passnumValue is ${this.passnumValue}`);
+    this.passnumValue++ 
+    console.log(`passnumValue is ${this.passnumValue}`);
+  }
+
+  removePass() {
+    // Grab the target
+    const lastpassDiv = this.passDivTarget;
+    console.log (lastpassDiv.lastChild)
+    lastpassDiv.lastElementChild.remove();
+    console.log(`removePass ran!`);
+    // Decrement passnumValue to update total passengers in the HTML attribute on Booking#New
+    this.passnumValue--
+    console.log(`passnumValue is ${this.passnumValue}`);
   }
 
 }

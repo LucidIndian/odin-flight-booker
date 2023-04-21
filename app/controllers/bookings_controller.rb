@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @selected_flight = Flight.find(params[:flight_id])
     @passengers_count = params[:num_of_passengers].to_i
-    # instantiating (not saving) already-associated-objects (X passengers to the booking)
+    # instantiating (not saving) already-associated-objects (X passengers with the booking)
     # @passengers_count.times { @booking.passengers.build }
   end
 

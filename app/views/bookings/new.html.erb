@@ -7,7 +7,7 @@
         on #{@selected_flight.start_date} at #{@selected_flight.start_time.strftime("%I:%M%p")}" %>
     </p> 
     <p>
-      <%= "Passenger count: #{@passengers_count}" %>
+      <%# <%= "Passenger count: #{@passengers_count}" %>
     </p>
   </section>  
 
@@ -23,15 +23,18 @@
     
     <h2>Passenger info</h2> 
     <button data-action="click->passenger#addPass">Add passenger!</button>
+    <button data-action="click->passenger#removePass">Remove passenger!</button>
     <hr>
+    
     <%# fields to enter info for each passenger %> 
     <template data-passenger-target="passengerForm" >
+      <%# instantiating (not saving) already-associated-objects (X passengers with the booking) %>
       <%= f.fields_for :passengers, @booking.passengers.build, child_index: 'PASSENGER_RECORD' do |passengers_attributes| %>
         <div id="newpass">
-              <%= passengers_attributes.label :name %>
-              <%= passengers_attributes.text_field :name, placeholder: "Passenger's name", required: true %>
-              <%= passengers_attributes.label :email %>
-              <%= passengers_attributes.email_field :email, placeholder: "name@example.com", required: true %>
+          <%= passengers_attributes.label :name %>
+          <%= passengers_attributes.text_field :name, placeholder: "Passenger's name", required: true %>
+          <%= passengers_attributes.label :email %>
+          <%= passengers_attributes.email_field :email, placeholder: "name@example.com", required: true %>
         </div> 
       <% end %>
     </template>
