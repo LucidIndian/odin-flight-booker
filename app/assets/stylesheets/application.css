@@ -62,3 +62,15 @@ section {
   padding: 1rem;
   margin: 0.5rem;
 }
+
+.removeButton {
+
+}
+
+.concealed {
+
+}
+
+.concealed .removeButton {
+  display: none;
+}

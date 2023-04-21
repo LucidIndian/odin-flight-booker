@@ -19,11 +19,17 @@
   <%= tag.div data: { controller: "passenger", 
     passenger_passnum_value: @passengers_count,
     passenger_target: "passDiv",
+    passenger_concealed_class: "concealed"
     }, class: "booking-form" do %>
     
     <h2>Passenger info</h2> 
     <button data-action="click->passenger#addPass">Add passenger!</button>
-    <button data-action="click->passenger#removePass">Remove passenger!</button>
+    <button 
+      class="removeButton"
+      data-action="click->passenger#removePass" 
+      data-passenger-target="removeButton"
+      >Remove passenger!
+    </button>
     <hr>
     
     <%# fields to enter info for each passenger %> 
