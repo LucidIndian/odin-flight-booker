@@ -10,8 +10,8 @@ export default class extends Controller {
 
   connect() {
     // this.element.textContent = "Hello Passenger Controller!"
-    console.log("Hello Passenger Controller!");
-    console.log(`passnumValue is ${this.passnumValue} on connect`)
+    // console.log("Hello Passenger Controller!");
+    // console.log(`passnumValue is ${this.passnumValue} on connect`)
     // Add the passenger fields the # of times as the params[:num_of_passengers] from the Booking page
     // Set as passnumValue as a different constant so I don't re-write it when I iterate it in the chained addPass() function
     const pnv = this.passnumValue;
@@ -23,7 +23,6 @@ export default class extends Controller {
   }
 
   addPass() {
-    console.log("Hello addPass Controller!");    
     // random # to get unique index so as to make a uniquely indexed record
     let randomIndex = Math.floor(Math.random() * 1000);
     // console.log(`randomIndex is ${randomIndex}`);      
@@ -33,34 +32,27 @@ export default class extends Controller {
     passDiv.insertAdjacentHTML('beforeend', passengerForm);
     // Iterated passnumValue to update total passengers in the HTML attribute on Booking#New
     this.passnumValue++ 
-    console.log(`passnumValue is ${this.passnumValue} after addPass` );
     this.buttonShow();
   }
 
   removePass() {
     // Grab the target
     const passDiv = this.passDivTarget;
-    console.log (passDiv.lastChild)
     passDiv.lastElementChild.remove();
-    console.log(`removePass ran!`);
     // Decrement passnumValue to update total passengers in the HTML attribute on Booking#New
     this.passnumValue--
-    console.log(`passnumValue is ${this.passnumValue} after removePass`);
     this.buttonShow()
   }
 
   buttonShow() {
-    // Show "remove" button w/ 2+ passengers
-    if ( this.passnumValue > 1) {
+    if ( this.passnumValue > 1 ) {
       // show the "remove" button!
-      this.element.classList.remove(this.concealedClass)
-      console.log(`REMOVE OK`)
-    } else if ( this.passnumValue < 2) {
+      this.element.classList.remove(this.concealedClass);
+    } else if ( this.passnumValue < 2 ) {
       // conceal the "remove" button!
-      this.element.classList.add(this.concealedClass)
-      console.log(`DO NOT REMOVE`)
+      this.element.classList.add(this.concealedClass);
     } else {
-      console.log(`REMOVE BUTTON ERROR`)
+      console.log(`REMOVE BUTTON ERROR`);
     }
   }
 
