@@ -30,6 +30,10 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
+
+        # The PassengerMailer sends confirmation email after booking saved
+        PassengerMailer.with(booking: @booking).confirmation_email.deliver_now
+
         format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
         format.json { render :show, status: :created, location: @booking }
       else

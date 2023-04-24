@@ -1,0 +1,8 @@
+Flight ID: <%= booking.flight_id %>
+
+ <% booking.passengers.each_with_index do |passenger, idx| %>
+    Passenger #<%= idx +1 %>
+    
+    Name: <%= passenger.name %>
+    Email: <%= passenger.email %>
+  <% end %>

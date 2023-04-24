@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to The Odin Flight Booker</h1>
+    <p>
+      You have successfully booked your flight!
+    </p>
+
+    <h2> Your booking: </h2>
+    <%= render @booking %>
+
+    <p>
+      To login to the site, just follow this link: <%= @url %>.
+    </p>
+    <p>Thank you and have a great day!</p>
+  </body>
+</html>
