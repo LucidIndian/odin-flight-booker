@@ -2,16 +2,15 @@ class PassengerMailer < ApplicationMailer
 
   default from: 'notifications@toptesting.com'
 
-  default to: -> { Booking.passengers.pluck(:email) }
-  # from: 'notification@example.com'
-
   def confirmation_email
-    @passengers = params[:passengers]
     @booking = params[:booking]
+    # Create an array of emails to send 1 message per passenger
+    @allpassemails = @booking.passengers.map { |pass| pass.email }  
     @url = 'https://example.com/login'
-    mail(to: 'tyght@tie.com', 
-      subject: 'Your Odin Test Flight is Booked',
-      booking:  @booking)
+    
+    mail( to: @allpassemails,
+      subject: 'Your Odin Test Flight is Booked!',
+      booking: @booking)
   end
 
 end
